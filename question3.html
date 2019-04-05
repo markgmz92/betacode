@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="width=device-width">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script defer src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script defer src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script defer src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+
+<body>
+    <div id="root"> </div>
+    <script src="text/babel">
+    class Form extends React.Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                ...props.user,
+                validationErrors: {}
+            }
+            this.handleInputChange = this.handleInputChange.bind(this)
+            this.handleSubmit = this.handleSubmit.bind(this)
+        }
+
+        handleInputChange(event) {
+            this.setState({
+                [event.target.name]: event.target.value
+            })
+        }
+
+        handleSubmit(event) {
+            event.preventDefault()
+            const errors = []
+
+            //Validate First Name, Last Name and Email
+            if (!this.state.firstName) errors.push({ key: 0, message: 'First Name Required' })
+            if (!this.state.lastName) errors.push({ key: 1, message: 'Last Name Required' })
+            if (!this.state.email) errors.push({ key: 2, message: 'Email Required' })
+
+            if (!errors.length) {
+                const data = {
+                    firstName: this.state.firstName,
+                    lastName: this.state.lastName,
+                    email: this.state.lastName,
+                    birthDate: this.state.birthDate,
+                    jobTitle: this.state.jobTitle,
+                    experienceYears: this.state.experienceYears
+                }
+                // Send PUT request
+                fetch('https://api.dummyendpoint/me/profile', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    }).then(rest => res.json())
+                    .then(response => console.log('Sucess'))
+                    .catch(error => console.error('Error'))
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>
