@@ -56,8 +56,30 @@
                     .then(response => console.log('Sucess'))
                     .catch(error => console.error('Error'))
             }
+
+            this.setState({ validationErros: errors })
         }
-    }
+
+        render() {
+            let status:
+                if (this.state.validationErrors.length) {
+                    status = (<div className = "alert alert-danger">
+        			{this.state.validationErrors.map(item => <div key={item.key}>{item.message}</div>)}
+        				</div>)
+                }
+
+
+            return (
+                <form onSubmit={this.handleSubmit}>
+        		{status}
+        		<div className="form-group">
+        			<label>First Name</label>
+        			<input className="form-control" name="firstName" onChange={this.handleInputChange} value={this.state.firstName} />
+        			</div>
+        			</form>
+            )
+        }
+    };
     </script>
 </body>
 

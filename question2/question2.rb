@@ -82,7 +82,7 @@ class Tree
 	end
 end
 
-# Test
+# Test values given 
 
 t = Tree.new(78)
 root = t.root
