@@ -1,34 +1,47 @@
-import './app.css';
-import ReactDOM from 'react-dom';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
-function CalenderDate(props) {
-    const { date, now } = props
-    let className = date.booked ? 'booked' : '';
+import Booking from './components/booking';
+import Calendar from './components/calendar';
+import CalendarDate from './components/calendardate';
+import CreateCalendar from './components/createcalendar';
+import Random from './components/random';
 
-    if (date.month() < now.month()) {
-        return (<button
-            disabled ={true}
-            className={`${className} date prev-month`}
-            onClick={props.onClick}>
-            {date.date()}
-            </button>)
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.cache = []
+        this.state = {
+            calendar: createCalendar(null, this.cache)
+        }
+        this.changeMonth = this.changeMonth.bind(this)
+        this.booking = this.booking.bind(this)
+        this.generateBookings = this.generateBookings.bind(this)
     }
-
-    if (date.month() > now.month()) {
-        return (<button
-            disabled ={true}
-            className={`${className} date next-month`}
-            onClick={props.onClick}>
-            {date.date()}
-            </button>)
+    changeMonth(value) {
+        this.setState({ calendar: createCalendar(this.state.calendar.now.add(value, 'months'), this.cache) })
     }
-
-    return (<button
-        disabled={date.booked}
-        className={`${className} date ${date.booked ? 'booked' : ''}`}
-        onClick={props.onClick} >
-        {date.date()}
-        </button>)
-
+    booking(date) {
+        this.setState({ calendar: booking(date) })
+    }
+    generateBookings() {
+        this.setState({ calendar: createCalendar(this.state.calendar.now, this.cache, true) })
+    }
+    render() {
+        return (
+            <div className="container my-5">
+            <div className="row">
+              <div className="col-12 col-md-8 offset-md-2 p-0">
+                <Calendar
+                  calendar={this.state.calendar}
+                  onChangeMonth={this.changeMonth}
+                  onBooking={this.booking}
+                  onGenerateBookings={this.generateBookings} />
+              </div>
+            </div>
+          </div>
+        );
+    }
 }
+
+ReactDOM.render(<App />, document.querySelector('#root'));
