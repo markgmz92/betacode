@@ -1,12 +1,34 @@
-import React from 'react';
+import './app.css';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function CalenderDate(props) {
+    const { date, now } = props
+    let className = date.booked ? 'booked' : '';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    if (date.month() < now.month()) {
+        return (<button
+            disabled ={true}
+            className={`${className} date prev-month`}
+            onClick={props.onClick}>
+            {date.date()}
+            </button>)
+    }
+
+    if (date.month() > now.month()) {
+        return (<button
+            disabled ={true}
+            className={`${className} date next-month`}
+            onClick={props.onClick}>
+            {date.date()}
+            </button>)
+    }
+
+    return (<button
+        disabled={date.booked}
+        className={`${className} date ${date.booked ? 'booked' : ''}`}
+        onClick={props.onClick} >
+        {date.date()}
+        </button>)
+
+}
