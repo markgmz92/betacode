@@ -1,6 +1,6 @@
 import React from 'react';
 
-render() {
+const CalendarDateDetail = props => {
     const { date, now } = props
     let className = date.booked ? 'booked' : '';
     if (date.month() < now.month()) {

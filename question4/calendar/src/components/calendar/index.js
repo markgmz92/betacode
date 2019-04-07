@@ -1,6 +1,6 @@
 import React from 'react';
 
-render() {
+const CalendarDetail = props => {
     return (
         <div className="calendar">
           <div className="month">
@@ -22,7 +22,7 @@ render() {
             <button className="btn btn-primary mt-5" onClick={() => props.onGenerateBookings()}>Generate Several Booking</button>
           </div>
         </div>
-    )
-}
+    );
+};
 
 export default class calendar extends React.Component;
