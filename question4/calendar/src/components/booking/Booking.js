@@ -1,5 +1,3 @@
-import React from 'react';
-
 function booking(date) {
     date.booked = true;
     let c = _.cloneDeep(date.calendar)
@@ -11,4 +9,4 @@ function booking(date) {
 }
 
 
-export default class booking extends React.Component;
+export default booking;

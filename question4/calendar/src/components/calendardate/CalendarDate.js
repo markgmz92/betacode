@@ -1,6 +1,4 @@
-import React from 'react';
-
-const CalendarDateDetail = props => {
+const CalendarDate = props => {
     const { date, now } = props
     let className = date.booked ? 'booked' : '';
     if (date.month() < now.month()) {
@@ -27,4 +25,4 @@ const CalendarDateDetail = props => {
       </button>)
 }
 
-export default class calendardate extends React.Component;
+export default CalendarDate;

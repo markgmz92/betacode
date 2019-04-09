@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CalendarDetail = props => {
     return (
         <div className="calendar">
@@ -25,4 +23,4 @@ const CalendarDetail = props => {
     );
 };
 
-export default class calendar extends React.Component;
+export default CalendarDetail;

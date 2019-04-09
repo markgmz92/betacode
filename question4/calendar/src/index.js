@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Booking from './components/booking';
-import Calendar from './components/calendar';
+import CalendarDetail from './components/calendardetail';
 import CalendarDate from './components/calendardate';
 import CreateCalendar from './components/createcalendar';
 import Random from './components/random';
@@ -12,14 +12,14 @@ class App extends React.Component {
         super(props)
         this.cache = []
         this.state = {
-            calendar: createCalendar(null, this.cache)
+            Calendar: createCalendar(null, this.cache)
         }
         this.changeMonth = this.changeMonth.bind(this)
         this.booking = this.booking.bind(this)
         this.generateBookings = this.generateBookings.bind(this)
     }
     changeMonth(value) {
-        this.setState({ calendar: createCalendar(this.state.calendar.now.add(value, 'months'), this.cache) })
+        this.setState({ alendar: createCalendar(this.state.calendar.now.add(value, 'months'), this.cache) })
     }
     booking(date) {
         this.setState({ calendar: booking(date) })

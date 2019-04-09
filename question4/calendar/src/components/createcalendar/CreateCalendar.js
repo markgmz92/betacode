@@ -1,5 +1,3 @@
-import React from 'react';
-
 function createCalendar(now, cache, generateBookings) {
     if (now == null) {
         now = moment()
@@ -53,7 +51,14 @@ function createCalendar(now, cache, generateBookings) {
     }
     return calendar
 
+    function random(min, max) {
+        const random = []
+        for (let i = 0; i < 7; i++) {
+            random.push(Math.ceil(Math.random() * (max - min) + min))
+        }
+        return random
+    }
 
 }
 
-export default class createCalendar extends React.Component;
+export default CreateCalendar;
