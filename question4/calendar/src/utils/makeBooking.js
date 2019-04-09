@@ -1,4 +1,6 @@
-function booking(date) {
+import _ from 'lodash'
+
+function Booking(date) {
     date.booked = true;
     let c = _.cloneDeep(date.calendar)
     return Object.assign(c, {
@@ -9,4 +11,4 @@ function booking(date) {
 }
 
 
-export default booking;
+export default Booking
