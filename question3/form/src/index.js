@@ -23,7 +23,7 @@ class App extends React.Component {
             <div className="row">
               <div className="col-12 col-md-8 offset-md-2 jumbotron">
                 <h1>User Form</h1>
-                <Form user={this.state.user} />
+                <form user={this.state.user} />
               </div>
             </div>
           </div>

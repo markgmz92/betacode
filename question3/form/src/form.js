@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Formsy from 'formsy';
 
-class Form extends React.Component {
+class form extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
