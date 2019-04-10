@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import form from './form'
+import Form from './form'
 
 class App extends React.Component {
     constructor(props) {
@@ -23,12 +23,14 @@ class App extends React.Component {
             <div className="row">
               <div className="col-12 col-md-8 offset-md-2 jumbotron">
                 <h1>User Form</h1>
-                <form user={this.state.user} />
+                <Form user={this.state.user} />
               </div>
             </div>
           </div>
         )
     }
 }
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <App />,
+    document.getElementById('root')
+);

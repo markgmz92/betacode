@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Formsy from 'formsy';
 
-class form extends React.Component {
+class Form extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -12,52 +12,45 @@ class form extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-
     handleInputChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-
     handleSubmit(event) {
         event.preventDefault()
         const errors = []
-
         // Validate First Name, Last Name and Email
         if (!this.state.firstName) errors.push({ key: 0, message: 'First Name Required' })
         if (!this.state.lastName) errors.push({ key: 1, message: 'Last Name Required' })
         if (!this.state.email) errors.push({ key: 2, message: 'Email Required' })
-
         if (!errors.length) {
             const data = {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
-                email: this.state.email,
-                birthDate: this.state.birthBate,
+                email: this.state.lastName,
+                birthDate: this.state.birthDate,
                 jobTitle: this.state.jobTitle,
-                experienceYears: this.state.experienceYears,
+                experienceYears: this.state.experienceYears
             }
-
-            // Send PUT Request
+            // Send PUT request
             fetch('https://api.dummyendpoint/me/profile', {
-                    method: 'PUT'
+                    method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
                 }).then(res => res.json())
-                .then(response => console.log('Sucess'))
-                .then(response => console.error('Error'))
+                .then(response => console.log('Success'))
+                .catch(error => console.error('Error'))
         }
         this.setState({ validationErrors: errors })
     }
-
     render() {
         let status;
         if (this.state.validationErrors.length) {
-            status = (<div className="alert alert-danger">
-        {this.state.validationErrors.map(item => <div key={item.key}>{item.message}</div>)}
-        </div>)
+            status = (<div className="alert alert-danger">  
+            {this.state.validationErrors.map(item => <div key={item.key}>{item.message}</div>)}
+          </div>)
         }
-
         return (
             <form onSubmit={this.handleSubmit}>
             {status}
@@ -93,5 +86,4 @@ class form extends React.Component {
     }
 }
 
-export form
-default
+export default Form
