@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Formsy from 'formsy';
+
 
 class Form extends React.Component {
     constructor(props) {
